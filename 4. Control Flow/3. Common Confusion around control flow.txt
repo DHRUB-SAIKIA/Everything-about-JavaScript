@@ -1,0 +1,38 @@
+4. Control Flow
+
+a. Fallthrough in switch-case
+let x =2;
+switch (x) {
+    case2:
+        console.log("Two");
+    case3:
+        console.log("Three");
+}
+Outpu: Two, Three ✅ (bug if break is missing)
+
+Ans:
+Once a case matches, JavaScript runs everything below it until it hits a break or the switch ends — it doesn't check the remaining cases anymore, just executes them blindly.
+switch (x) {
+    case 2:
+        console.log("Two");   // ✅ matched, runs
+    case 3:
+        console.log("Three"); // 🚨 no break above, runs too!
+}
+It "falls through" from case 2 into case 3 automatically.
+Fix — always add break:
+switch (x) {
+    case 2:
+        console.log("Two");
+        break; // stops here
+    case 3:
+        console.log("Three");
+        break;
+}
+The only time fallthrough is useful intentionally:
+case 1:
+case 2:
+case 3:
+    console.log("1, 2, or 3"); // all three share the same logic
+    break;
+
+Rule of thumb: always add break unless you're intentionally grouping cases together.

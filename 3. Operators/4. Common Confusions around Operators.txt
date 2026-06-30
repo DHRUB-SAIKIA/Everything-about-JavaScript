@@ -1,0 +1,54 @@
+3. Operators
+
+a. !! value for truthinness
+!!""       // false
+!!"hello"  // true
+!!0        // false
+!!1        // true
+
+Ans:
+!! is just two ! (NOT) operators applied back to back.
+~First ! converts the value to a boolean and flips it
+~Second ! flips it back to the correct boolean
+
+!!"hello"
+→ !"hello"  // false (truthy flipped)
+→ !false    // true  (flipped back)
+
+So it's just a quick way to convert any value to its true boolean form.
+Falsy values (become false):
+!!""         // false  empty string
+!!0          // false  zero
+!!null       // false
+!!undefined  // false
+!!NaN        // false
+!!false      // false
+
+Everything else is truthy (becomes true):
+!!"hello"   // true
+!!1         // true
+!![]        // true  ← even empty array
+!!{}        // true  ← even empty object
+Rule of thumb: JavaScript has only 6 falsy values — "", 0, null, undefined, NaN, false. Everything else is truthy, !! just makes that boolean explicit.
+
+b. Pre/Post increment
+let i = 1;
+console.log.(++i); // 2
+console.log(i++); // 2 (but i is now 3)
+
+Ans:
+Simple rule:
+++i (pre) — increment first, then return the new value
+i++ (post) — return the current value first, then increment
+
+let i = 1;
+
+console.log(++i); // i becomes 2 first, then returns 2 → prints 2
+console.log(i++); // returns 2 first, then i becomes 3 → prints 2
+console.log(i);   // 3
+
+Think of it as where the ++ sits = when it fires:
+++ before the variable → fires before you use it
+++ after the variable → fires after you use it
+
+Same logic applies to -- (decrement).

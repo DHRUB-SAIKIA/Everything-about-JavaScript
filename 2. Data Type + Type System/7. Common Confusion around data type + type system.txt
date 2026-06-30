@@ -1,4 +1,4 @@
-1. Data Type + Type System
+2. Data Type + Type System
 
 a. Why NaN is number ?
 typeof NaN === 'number' // true

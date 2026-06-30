@@ -1,0 +1,26 @@
+1. Variables & Declarations
+
+a. Why var leaks outside block but let doesn't ?
+if (true) {
+    var a = 1;
+    let b = 2;
+}
+console.log(a); // ✅ 1
+console.log(b); // ❌ ReferenceError
+
+Ans:
+var is function-scoped (or global), not block-scoped — so when the engine sees var a inside {}, it hoists it all the way up to the nearest function/global scope, ignoring the block entirely. let is block-scoped — it only exists within the {} it's declared in, and disappears once that block ends.
+So a was never really "inside" the if block; b actually was.
+
+
+b. Why const allows changing object properties ?
+const person = { name: "Dhruba" };
+person.name = "Saikia"; // ✅ allowed
+person = {}; // ❌ Not allowed
+
+Ans:
+const doesn't make the value immutable — it makes the binding (the variable name) immutable. It just means you can't reassign what person points to.
+person holds a reference (a memory address) to an object. const locks that reference in place — you can't make person point to a different object. But it says nothing about what happens inside the object at that address. Changing person.name doesn't touch the reference at all; it just mutates the object that the reference still points to.
+So person.name = "Saikia" is fine — same object, same reference, just a different property value.
+But person = {} tries to make person point to a brand new object entirely — that's a reassignment of the binding, which const forbids.
+If you actually want the object itself to be unchangeable, you'd need Object.freeze(person), which prevents property changes too (in non-strict mode it fails silently, in strict mode it throws).

@@ -1,0 +1,7 @@
+5. Loops
+
+a. when to use for and while loop.
+Ans:
+Simple rule:
+~ for — when you know how many times to loop
+~ while — when you loop until a condition changes
